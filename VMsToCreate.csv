@@ -1,0 +1,2 @@
+VMName,Description,Template,CPUs,StartupMem,MinimumMem,MaximumMem,VMNetwork,OS,NameOfComputer,Cloud
+WesTestScript,Testing123,Windows2016Standard-March2017,2,2048,2048,4096,10.100.80.x (VMN),Windows Server 2016 Standard,WesTestScript,Crafton-SQL-NonProd
