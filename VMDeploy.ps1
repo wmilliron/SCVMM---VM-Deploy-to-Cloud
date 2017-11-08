@@ -111,13 +111,19 @@ $Sleeper = 0
 Do{
     Start-sleep 60
     $Sleeper += 1
+    if(Get-SCJob -Running){
+        $JobStatus = 1
+    }
+    else{
+        $JobStatus = $null
+    }
 }
-Until((get-scjob -Running) -eq $null -or $Sleeper -eq 240)
+Until($JobStatus -eq $null -or $Sleeper -eq 240)
 if($Sleeper -eq 240){
     write-host "Cleanup Job Timed out after 4 hours" -ForegroundColor Red
     return
 }
-elseif((get-scjob -Running) -eq $null){
+elseif($JobStatus -eq $null){
     foreach ($VM in $VMs){
         $VMName = $VM.VMName
         $HardwareProfile = Get-SCHardwareProfile -VMMServer scvmm -Name "HWProfile_$VMName"
